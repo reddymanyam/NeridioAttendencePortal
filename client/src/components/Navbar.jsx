@@ -1,7 +1,13 @@
 import React, { useState } from 'react';
+import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
+
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const navigate = useNavigate();
 
   return (
     <nav className="bg-white shadow-lg border-b border-gray-200">
@@ -18,33 +24,45 @@ const Navbar = () => {
                 Attendance
               </span>
             </div>
-            
+
             {/* Desktop Navigation */}
             <div className="hidden md:ml-6 md:flex md:items-center md:space-x-4">
-              <a
-                href="#"
-                className="px-3 py-2 text-sm font-medium text-blue-600 border-b-2 border-blue-600"
+              <NavLink
+                to="/admin"
+                end
+                className={({ isActive }) =>
+                  isActive
+                    ? "px-3 py-2 text-sm font-medium text-blue-600 border-b-2 border-blue-600"
+                    : "px-3 py-2 text-sm font-medium text-gray-500 hover:text-gray-900 transition duration-150"
+                }
               >
                 Dashboard
-              </a>
-              <a
-                href="#"
+              </NavLink>
+
+              {/* <Link
+                to="/attendance"
                 className="px-3 py-2 text-sm font-medium text-gray-500 hover:text-gray-900 transition duration-150"
               >
                 Attendance
-              </a>
-              <a
-                href="#"
+              </Link>
+
+              <Link
+                to="/reports"
                 className="px-3 py-2 text-sm font-medium text-gray-500 hover:text-gray-900 transition duration-150"
               >
                 Reports
-              </a>
-              <a
-                href="#"
-                className="px-3 py-2 text-sm font-medium text-gray-500 hover:text-gray-900 transition duration-150"
+              </Link> */}
+
+              <NavLink
+                to="/admin/employeeslist"
+                className={({ isActive }) =>
+                  isActive
+                    ? "px-3 py-2 text-sm font-medium text-blue-600 border-b-2 border-blue-600"
+                    : "px-3 py-2 text-sm font-medium text-gray-500 hover:text-gray-900 transition duration-150"
+                }
               >
-                Employees
-              </a>
+                Employees List
+              </NavLink>
             </div>
           </div>
 
@@ -92,30 +110,33 @@ const Navbar = () => {
       {isMenuOpen && (
         <div className="md:hidden">
           <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-gray-50 border-t border-gray-200">
-            <a
-              href="#"
-              className="block px-3 py-2 text-base font-medium text-blue-600 bg-blue-50 rounded-lg"
+            <Link
+              to="/"
+              className="px-3 py-2 text-sm font-medium text-blue-600 border-b-2 border-blue-600"
             >
               Dashboard
-            </a>
-            <a
-              href="#"
-              className="block px-3 py-2 text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-100 rounded-lg"
-            >
-              Attendance
-            </a>
-            <a
-              href="#"
-              className="block px-3 py-2 text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-100 rounded-lg"
-            >
-              Reports
-            </a>
-            <a
-              href="#"
-              className="block px-3 py-2 text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-100 rounded-lg"
+            </Link>
+
+            {/* <Link
+                to="/attendance"
+                className="px-3 py-2 text-sm font-medium text-gray-500 hover:text-gray-900 transition duration-150"
+              >
+                Attendance
+              </Link>
+
+              <Link
+                to="/reports"
+                className="px-3 py-2 text-sm font-medium text-gray-500 hover:text-gray-900 transition duration-150"
+              >
+                Reports
+              </Link> */}
+
+            <Link
+              to="/employeeslist"
+              className="px-3 py-2 text-sm font-medium text-gray-500 hover:text-gray-900 transition duration-150"
             >
               Employees
-            </a>
+            </Link>
           </div>
         </div>
       )}
